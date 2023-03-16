@@ -1,13 +1,13 @@
 import logging
-import threading
-import queue
+from threading import Thread
+from queue import Queue
 from mluvii_api import send_request
 from response_creator import process_data
 
-requestQueue = queue.Queue()
+requestQueue = Queue()
 
 
-def worker():
+def worker() -> None:
     while True:
         item = requestQueue.get()
         logging.info(f'Working on {item}')
@@ -20,7 +20,7 @@ def worker():
 
 
 # Turn-on the worker thread.
-threading.Thread(target=worker, daemon=True).start()
+Thread(target=worker, daemon=True).start()
 
 
 def process_message(server, bot, data):
@@ -32,3 +32,6 @@ def process_message(server, bot, data):
             return
         else:
             send_request(server, bot, response_message)
+
+
+

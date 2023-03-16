@@ -1,4 +1,5 @@
 from datetime import datetime, timezone
+from dataclasses import dataclass
 
 
 class WorkerData:
@@ -8,11 +9,11 @@ class WorkerData:
         self.server = server
 
 
+@dataclass
 class Bot:
-    def __init__(self, chatbot_id, client_id, client_secret):
-        self.chatbot_id = chatbot_id
-        self.client_id = client_id
-        self.client_secret = client_secret
+    chatbot_id:str
+    client_id:str
+    client_secret:str
 
 
 def datetime_now_iso():

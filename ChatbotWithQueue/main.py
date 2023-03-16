@@ -1,13 +1,11 @@
 import logging
-
-import flask
-from flask import request
+from flask import request, Flask
 import json
 from helpers import WorkerData, Bot
 from worker import requestQueue
 
 
-app = flask.Flask(__name__)
+app = Flask(__name__)
 
 
 @app.route('/testbot', methods=['POST', 'GET'])
