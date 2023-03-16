@@ -6,7 +6,7 @@ logging.basicConfig(
     format='%(asctime)s %(levelname)-8s %(message)s',
     level=logging.INFO)
 
-if __name__ == "__main__":
+def main() -> None:
     argParser = argparse.ArgumentParser()
     argParser.add_argument("-c", "--cert", help="Path to certificate")
     argParser.add_argument("-k", "--key", help="Path to certificate key")
@@ -21,3 +21,7 @@ if __name__ == "__main__":
         app.run(host='0.0.0.0', port=args.port, ssl_context=context)
     else:
         app.run(host='0.0.0.0', port=args.port)
+
+
+if __name__ == "__main__":
+    main()

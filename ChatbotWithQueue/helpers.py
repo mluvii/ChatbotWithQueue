@@ -9,7 +9,7 @@ class WorkerData:
         self.server = server
 
 
-@dataclass
+@dataclass(frozen=True)
 class Bot:
     chatbot_id:str
     client_id:str

@@ -1,5 +1,5 @@
 import logging
-from flask import request, Flask
+from flask import Flask, request
 import json
 from helpers import WorkerData, Bot
 from worker import requestQueue
