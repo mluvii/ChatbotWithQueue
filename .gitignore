@@ -1,3 +1,5 @@
 /ChatbotWithQueue/__pycache__
 /ChatbotWithQueue/venv
 /ChatbotWithQueue/.idea
+
+.env/
