@@ -1,6 +1,9 @@
 # ChatbotWithQueue
 Python chatbot that uses worker to process messages
 
+## How to start chatbot
+Run **wsgi.py** to start Chatbot
+
 ## Arguments
 - "-h" Help 
 - "-p" Port Number
