@@ -2,7 +2,8 @@ import logging
 from threading import Thread
 from queue import Queue
 from mluvii_api import send_request
-from response_creator import process_data
+from response_creator import process_data, process_data_for_chat_gpt, create_typing_message, create_not_typing_message
+from helpers import get_gpt_key
 
 requestQueue = Queue()
 
@@ -27,11 +28,25 @@ def process_message(server, bot, data):
     if 'Activity' in data and 'Ping' in data['Activity']:
         return
     else:
-        response_message = process_data(data)
-        if response_message is None:
-            return
+        gpt_key = get_gpt_key()
+        if gpt_key is not None:
+            typing = create_typing_message(data)
+            send_request(server, bot, typing)
+            response_message = process_data_for_chat_gpt(data)
+            if response_message is None:
+                not_typing = create_not_typing_message(data)
+                send_request(server, bot, not_typing)
+                return
+            else:
+                not_typing = create_not_typing_message(data)
+                send_request(server, bot, not_typing)
+                send_request(server, bot, response_message)
         else:
-            send_request(server, bot, response_message)
+            response_message = process_data(data)
+            if response_message is None:
+                return
+            else:
+                send_request(server, bot, response_message)
 
 
 

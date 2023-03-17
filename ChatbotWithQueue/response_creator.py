@@ -1,5 +1,25 @@
 import logging
-import message_types 
+import message_types
+from chatgpt_api import send_msg_to_chatbot_api
+
+
+def create_typing_message(data):
+    session_id = data['sessionId']
+    return message_types.message_typing(session_id, True)
+
+
+def create_not_typing_message(data):
+    session_id = data['sessionId']
+    return message_types.message_typing(session_id, False)
+
+
+def process_data_for_chat_gpt(data):
+    if 'text' not in data or 'sessionId' not in data:
+        return None
+    text_to_process = data['text']
+    session_id = data['sessionId']
+    resp = send_msg_to_chatbot_api(session_id, text_to_process)
+    return message_types.message_payload(resp, session_id)
 
 
 def process_data(data):
