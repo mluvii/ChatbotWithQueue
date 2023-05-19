@@ -28,7 +28,7 @@ def process_data(data):
     else:
         text_to_process = data['text']
         session_id = data['sessionId']
-        logging.info(f'text to process: {text_to_process}')
+        logging.info(f'Text to process: {text_to_process}')
         match text_to_process:
             case 'GetAvailableOperators':
                 return message_types.message_get_available_operators(session_id)

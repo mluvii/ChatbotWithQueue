@@ -20,7 +20,7 @@ def main() -> None:
     arg_parser.add_argument("-x", "--secret", help="mluvii API secret")
     arg_parser.add_argument("-g", "--gpt", help="Chat GPT key")
     args = arg_parser.parse_args()
-    logging.info(f'args: {args}')
+    logging.debug(f'args: {args}')
 
     set_server_url(os.environ.get("SERVER_URL"))
     set_gpt_key(os.environ.get("GPT_API_KEY"))

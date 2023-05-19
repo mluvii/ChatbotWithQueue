@@ -9,7 +9,7 @@ def get_access_token(bot, server_url):
     headers = {
         'Content-Type': 'application/x-www-form-urlencoded'
     }
-    logging.info("Url is: " + url + " with ci: " + bot.client_id + " and secret " + bot.client_secret)
+    logging.debug("Url is: " + url + " with ci: " + bot.client_id + " and secret " + bot.client_secret)
     payload = {
         'response_type': 'token',
         'grant_type': 'client_credentials',
@@ -20,7 +20,7 @@ def get_access_token(bot, server_url):
 
     if response.status_code == 200:
         access_token = response.json()['access_token']
-        logging.info("access token is: " + access_token)
+        logging.debug("access token is: " + access_token)
         return access_token
     else:
         raise logging.error("Could not retrieve access token.")
