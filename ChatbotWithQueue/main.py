@@ -5,6 +5,7 @@ import json
 from helpers import WorkerData, Bot, get_bot, get_server_url
 from worker import requestQueue
 
+
 app = Flask(__name__)
 
 webhook_url = os.environ.get('WEBHOOK_URL') 
