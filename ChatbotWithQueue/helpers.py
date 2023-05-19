@@ -21,6 +21,14 @@ def datetime_now_iso():
 server_url: str | None = None
 gpt_key: str | None = None
 bot: Bot | None = None
+gpt_model: str | None = None
+
+def set_gpt_model(model:str) -> None:
+    global gpt_model
+    gpt_model = model
+
+def get_gpt_model() -> str:
+    return gpt_model
 
 
 def set_bot(b: Bot) -> None:

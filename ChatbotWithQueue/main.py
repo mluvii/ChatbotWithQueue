@@ -1,3 +1,4 @@
+import os
 import logging
 from flask import Flask, request
 import json
@@ -6,11 +7,17 @@ from worker import requestQueue
 
 app = Flask(__name__)
 
+webhook_url = os.environ.get('WEBHOOK_URL') 
 
-@app.route('/testbot', methods=['POST', 'GET'])
+@app.route('/', methods=['GET'])
+def index():
+    return 'ok', 200
+
+
+@app.route(f'/{webhook_url}', methods=['GET', 'POST'])
 def chatbot():
     if request.method == 'GET':
-        return 'OK'
+        return 'OK', 200
     else:
         server_url = request.host.split(":")[0]
         chatbot_id = request.args.get('id')
