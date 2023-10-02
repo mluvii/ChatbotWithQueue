@@ -1,3 +1,4 @@
+import json
 import logging
 import message_types
 from chatgpt_api import send_msg_to_chatbot_api
@@ -24,6 +25,12 @@ def process_data_for_chat_gpt(data):
 
 def process_data(data):
     if 'text' not in data or 'sessionId' not in data:
+        activity_type = data['activity']
+        if activity_type == 'HeroCardSubmission':
+            params = json.dumps(data['params'])
+            session_id = data['sessionId']
+            return message_types.message_payload(params, session_id)
+        logging.info(f'Nothing to process: {data}')
         return None
     else:
         text_to_process = data['text']
